@@ -1,7 +1,7 @@
 body{
     margin:0;
     padding: 0;
-    background: url("Welcome_Background.jpeg") no-repeat fixed center;
+    background: url("cloud.png") no-repeat fixed center;
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
@@ -11,9 +11,10 @@ body{
     font-size: 30px;
     border: 5px solid transparent;
     background-color: white;
-    margin: 10px;
+    margin: 20px;
     padding: 30px;
     border-radius: 10px;
+    box-shadow: 5px 10px;
 }
 .container{
     padding: 50px;
@@ -24,3 +25,7 @@ body{
     margin: 10px;
     margin-top: 0px;
 }
+
+a:hover{
+    color: #ffc107;
+};
