@@ -7,9 +7,9 @@ body{
     background-position: center;
     font-family: sans-serif;
 }
-.loginbox{
+.loginbox {
     width: 400px;
-    height: 475px;
+    height: 525px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
     background: rgb(78, 78, 78);
     color: #fff;
@@ -21,7 +21,7 @@ body{
     padding: 70px 30px;
     text-align: center;
 }
-.avatar{
+.avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -30,31 +30,32 @@ body{
     left: calc(50% - 50%);
 
 }
-h1{
+h1 {
   margin:0;
-  padding: 0 0 20px;
+  padding: 0 0 40px;
   text-align: center;
-  font-size: 22px;  
+  font-size: 32px;  
+  color: rgb(55, 186, 226);
 }
-.loginbox p{
+.loginbox p {
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
 .loginbox input{
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
-.loginbox input[type="text"], input[type="password"]{
+.loginbox input[type="email"], input[type="password"] {
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 3px solid #fff;
     background: transparent;
     outline: none;
     height: 40px;
     color: #fff;
     font-size: 16px;
 }
-.loginbox input[type="submit"]{
+.loginbox input[type="submit"] {
     border: none;
     outline: none;
     height: 40px;
@@ -63,13 +64,14 @@ h1{
     font-size: 18px; 
     border-radius: 20px;
 }
+
 .loginbox input[type="submit"]:hover
 {
     cursor: pointer;
     background: #ffc107;
     color:#000;
 }
-.loginbox a{
+.loginbox a {
     text-decoration: none;
     text-align: center;
     font-size: 16px;
@@ -84,8 +86,8 @@ h1{
 {
     font-size: 110%;
     display: inline-block;
-    margin-bottom: 0; /* I added this after I posted my reply */
-    vertical-align: middle; /* Fixes any weird issues in Firefox and IE */
+    margin-bottom: 0; 
+    vertical-align: middle; 
   
 }
 
@@ -93,6 +95,29 @@ h1{
 {
     margin-bottom: 10px;
     margin-right: 10px;
+}
+
+.error_msg {
+    color: red;
+}
+
+.loginbox form .error_msg {
+    visibility: hidden;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    font-size: 15px;
+    padding: 0px 10px 15px 10px;
+}
+
+.form-control.error input  {
+    border-bottom: 3px solid red;
+    color: red;
+}
+
+.form-control.success input  {
+    border-bottom: 3px solid green;
+    color: #fff;
 }
 
 
