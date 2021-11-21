@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TTS Test</title>
+</head>
+<body>
+    
+    Select Voice: <select id='voiceList'></select> <br><br>
+    <input id='txtInput' placeholder="Input text here!"/> <br><br>    
+    <label for="rate">Rate:</label>
+    <div id="rate-value">1</div>
+    <input type="range" id="rate" min="0" max="2" value="1" step="0.1"> <br><br> 
+    <label for="pitch">Pitch:</label>
+    <div id="pitch-value">1</div>
+    <input type="range" id="pitch" min="0" max="2" value="1" step="0.1"><br><br>
+    <button id='btnSpeak'>Speak</button>
+    <script src="tts.js"></script> 
+</body>
+</html>
