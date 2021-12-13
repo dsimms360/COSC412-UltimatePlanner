@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="server.js" async></script>
+    <link rel="stylesheet" href="/signup/css">
+    <title>Ultimate Planner | Sign Up Form</title>
+    <link rel="shortcut icon" type="image/jpg" href="/favicon"/>
+</head>
+    <body>
+        <div class = "loginbox">
+            <img src="/avatar" class="avatar">
+            <h1>Sign Up </h1>
+            <form class="form" method="POST" id="form">
+                <div class="form-control">
+                    <label for="fName" class="Label">First Name:</label>
+                    <input  type="fName" id ="fName" name="fName" placeholder="Enter First Name">
+                </div>
+                <br>
+                <div class="form-control">
+                    <label for="lName" class = "Label">Last Name:</label>
+                    <input  type="lName" id ="lName" name="lName" placeholder="Enter Last Name">
+                </div>
+                <br>
+                <div class="form-control">
+                    <label for="email" class = "Label"> Email:</label>
+                    <input  type="email" id ="email" name="email" placeholder="Enter Email">
+                </div>
+                <br>
+                <div class="form-control">
+                    <label for="password" class = "Label"> Password:</label>
+                    <input type="password" id ="password" name="password" placeholder="Enter Password">
+                </div>
+               
+                <div class="tos-btn">
+                <p><span><input type="checkbox"></span> I agree to the Terms of Service </p>
+                </div>
+                <input type="submit" name="submitBtn" value="Sign up">
+                <hr>
+                <p>Already have an account?</p><a href="/login">Sign In</a><br>
+            </form>
+        </div>
+    </body>
+</html>

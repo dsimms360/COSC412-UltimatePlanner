@@ -9,7 +9,7 @@
     margin: auto;
 }
 header{
-    background: url("cloud.png");
+    background: url("/cloud");
     height: 100vh;
     -webkit-background-size:cover;
     background-size:cover;

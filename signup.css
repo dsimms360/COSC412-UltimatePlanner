@@ -2,14 +2,14 @@
 body{
     margin:0;
     padding: 0;
-    background: url("cloud.png") no-repeat fixed center; 
+    background: url("/cloud") no-repeat fixed center; 
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
 }
 .loginbox {
     width: 400px;
-    height: 525px;
+    height: 650px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
     background: rgb(78, 78, 78);
     color: #fff;
@@ -46,7 +46,7 @@ h1 {
     width: 100%;
     margin-bottom: 5px;
 }
-.loginbox input[type="email"], input[type="password"] {
+.loginbox input[type="email"], input[type="password"], input[type='fName'], input[type='lName'] {
     border: none;
     border-bottom: 3px solid #fff;
     background: transparent;
