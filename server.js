@@ -3,15 +3,16 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-
+//this variable will hold the query result from a successful user login.
 var user = null;
 
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+//connecting to the database
 mongoose.connect("mongodb+srv://MindMap-Server:test1234@mindmap.swavv.mongodb.net/UsersDB?retryWrites=true&w=majority");
 
-//create data schema
+//data schema
 const usersSchema = {
     fName: String,
     lName: String,
@@ -19,229 +20,113 @@ const usersSchema = {
     password: String
 }
 
+//schema instance to our database. All entries must follow the above schema.
 const Users = mongoose.model("newUser", usersSchema);
 
-
+//sends landing page to root path '/'
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/index.html');
 });
 
+//sends favicon image to '/favicon' path
 app.get('/favicon', function(req, res) {
     res.sendFile(__dirname + '/favicon.png');
 })
 
+//sends css for landing page to '/css' path
 app.get('/css', function(req, res) {
     res.sendFile(__dirname + '/welcome.css')
 })
 
+//sends background image to '/cloud' path
 app.get('/cloud', function(req, res){
     res.sendFile(__dirname + '/cloud.png');
 })
 
+//sends login page to '/login' path
 app.get('/login', function(req, res) {
     res.sendFile(__dirname + '/views/login.html');
 })
 
+//sends css for login page to 'login/css' path
 app.get('/login/css', function(req, res) {
     res.sendFile(__dirname + '/style.css');
 })
 
+//sends avatar image to 'avatar' path
 app.get('/avatar', function(req, res) {
     res.sendFile(__dirname + '/avatar1.png');
 })
 
+//sends signup page to 'signup' path
 app.get('/signup', function(req, res) {
     res.sendFile(__dirname + '/views/signup.html');
 })
 
+//sends css for signup page to 'signup/css' path
 app.get('/signup/css', function(req, res) {
     res.sendFile(__dirname + '/signup.css');
 })
 
+//sends homepage to '/home' path
 app.get('/home', function(req, res) {
     res.sendFile(__dirname + '/views/homepage.html');
 })
 
+//sends css for homepage to '/home/css' path
 app.get('/home/css', function(req, res) {
     res.sendFile(__dirname + '/style1.css');
 })
 
+//handling the creation of a new user
 app.post("/signup", function(req, res){
+    //create new user object based on the user schema and the input boxes from the frontend.
     let newUser = new Users({
         fName: req.body.fName,
         lName: req.body.lName,
         email: req.body.email,
         password: req.body.password
     });
+    //saves user to the database
     newUser.save()
     .then((result) => {
         user = result;
+        //redirects to the login page after the creation of the user
         res.redirect('/login');
     })
+    //catches errors
     .catch((err) => {
         console.log(err);
     });
     
 })
 
-app.post('/login', function(req, res) {
-    var email = req.body.email;
-    var password = req.body.password;
+//handles login and receives correct user from the database
+app.get('/get-user', function(req, res) {
+    var email = req.query.email;
+    var password = req.query.password;
+    //finding the user by email
     Users.find({'email': email})
     .then(result => {
-        if(result.password === password){
-            user = result;
-            res.redirect('/home');
-        }
+        //checking each corresponding item in the result query to see if the password matches the user entry.
+        result.forEach(item => {
+            if(item.password === password){
+                console.log(result);
+                user = result;
+                //redirects to '/home' path when the password matches.
+                res.redirect('/home');
+            }
+        })
+        
     })
+    //catches any errors and prints to the console.
     .catch(err => {
         console.log(err);
     })
 })
 
+
+//app is listening on port 3000
 app.listen(3000, function(){
     console.log('server is running on port 3000');
 });
-
-/**const express = require('express');
-const app = express();
-const User = require('./models/user');
-const mongoose = require('mongoose');
-const ejs = require('ejs');
-const bodyParser = require('body-parser');
-
-
-app.set('view engine', 'ejs');
-
-const dbURI = 'mongodb+srv://MindMap-Server:test1234@mindmap.swavv.mongodb.net/UsersDB?retryWrites=true&w=majority';
-
-mongoose.connect(dbURI);
-
-app.listen(3005, function() {
-    console.log('server is running on port 3005');
-})
-
-app.get('/', (req, res) => {
-    res.render('index');
-})
-
-app.get('/login', (req, res) => {
-    res.render('login');
-})
-
-app.get('/home', (req, res) => {
-    res.render('homepage')
-})
-
-function getUser(){
-    let desiredUser;
-    User.find({}, function(users){
-        users.forEach(user => {
-            if(user.email === document.getElementById('email').innerHTML && user.password === document.getElementById('email').innerHTML){
-                localStorage.setItem('user', user);
-                console.log("localStorage has been saved to!")
-            }
-        })
-    })
-}
-
-/**
-//connect to MongoDB
-const dbURI = 'mongodb+srv://MindMap-Server:test1234@mindmap.swavv.mongodb.net/UsersDB?retryWrites=true&w=majority';
-
-
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
-    .then((result) => app.listen(3000), function() {
-        console.log("server listening on port 3000");
-    })
-    .catch((err) => console.log(err));
-
-const bodyParser = require('body-parser');
-
-
-
-app.use(bodyParser.urlencoded({extended: true}));
-
-//connecting to the database
-
-//("mongodb+srv://412-Proj:Deng@cluster0.r2eqi.mongodb.net/UserDB", {useNewUrlParser: true}, {useUnifiedTopology: true});
-
-//mongoose and mongo sandbox routes
-
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
-});
-
-
-app.get("/signup", (req, res) => {
-    res.sendFile(__dirname + "/signup.html");
-});
-
-app.get("/login", (req, res) => {
-    res.sendFile(__dirname + "/login.html");
-})
-
-app.post("/login", (req, res) => {
-    let newUser = new User({
-        fName: req.body.fName,
-        lName: req.body.lName,
-        email: req.body.email,
-        password: req.body.password
-    });
-    newUser.save()
-        .then((result) => {
-            res.send(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-        window.alert("User account has been created!");
-    res.sendFile(__dirname + "/login.html");
-})
-
-app.get("/login", (req, res) => {
-    User.find()
-    .then((result))
-})
-
-app.get("/home", (req, res) => {
-    res.sendFile("/homepage.html");
-})
-
-
-app.get('/all-users', (req, res) => {
-    User.find()
-    .then((result) => {
-        res.send(result);
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-});
-
-app.get('/single-user', (req, res) => {
-    User.find( {email: "dsimms362@gmai.com"} )
-    .then((result) => {
-        res.send(result)
-    })
-    .catch((err) => {
-        console.log(err)
-    });
-})
-/**app.post("/", function(req, res) {
-    let newUser = new User({
-        email: 'email@email.com',
-        password: 'test1234'
-    });
-    newUser.save()
-        .then((result) => {
-            res.send(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-})*/
-
-/**app.listen(3000, function() {
-    console.log("server is running on port 3000");
-})*/
