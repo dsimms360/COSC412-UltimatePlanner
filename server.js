@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const creds = require('./credentials.json');
 
 //this variable will hold the query result from a successful user login.
 var user = null;
@@ -10,7 +11,7 @@ var user = null;
 app.use(bodyParser.urlencoded({extended: true}));
 
 //connecting to the database
-mongoose.connect("mongodb+srv://MindMap-Server:test1234@mindmap.swavv.mongodb.net/UsersDB?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://" + creds.dbUsername + ":" + creds.dbPassword + "@mindmap.swavv.mongodb.net/UsersDB?retryWrites=true&w=majority");
 
 //data schema
 const usersSchema = {
