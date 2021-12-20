@@ -11,29 +11,45 @@
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
+    nextDayThreshold: '09:00:00',
+    displayEventTime: false,
     initialView: 'dayGridMonth',
-    headerToolbar: {
+    headerToolbar: {  
       left: 'prev,next today addEventButton',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
    },
     customButtons: {
       addEventButton: {
+        
         text: 'Add Event',
         click: function() {
+          var title = prompt('Enter Event Name');
           var dateStr = prompt('Enter a date in YYYY-MM-DD format');
           var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+          var dateEnd = prompt('Enter a date in YYYY-MM-DD format');
+          var date_end = new Date(dateEnd + 'T09:00:00'); // will be in local time
 
-          if (!isNaN(date.valueOf())) {
-            calendar.addEvent({
-              title: 'dynamic event',
+          if (!isNaN(date.valueOf()) || !isNaN(date_end.valueOf())) {
+            //If event starts and ends on same day
+            if(date_end.getDate() === date.getDate()){
+              calendar.addEvent({
+              title: title,
               start: date,
-              description: 'Test Event',
+              end: date_end,
               allDay: true
+              });
+              //If event starts and ends on different days
+              } else{
+                calendar.addEvent({
+                title: title,
+                start: date,
+                end: date_end
             });
-            alert('Great. Now, update your database...');
+            }
+            alert('Event Created!');
           } else {
-            alert('Invalid date.');
+            alert('Invalid date. Try again!');
           }
         }
       },
@@ -46,10 +62,6 @@
     },
     eventClick: function(info) {
     alert('Event: ' + info.event.title);
-    alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-    alert('View: ' + info.view.type);
-
-    // change the border color just for fun
   },
   eventRender: function (info) {
   info.tooltip({ title: info.event.title });     
