@@ -2,7 +2,7 @@ body
 {
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.192),rgba(0, 0, 0, 0.192)),url(cloud.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.192),rgba(0, 0, 0, 0.192)),url("/cloud");
     background-size: cover;
     background-position: center;
     color: #fff !important;
