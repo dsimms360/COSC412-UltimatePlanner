@@ -79,6 +79,14 @@ app.get('/home/css', function(req, res) {
     res.sendFile(__dirname + '/style1.css');
 })
 
+app.get('/about', function(req, res) {
+    res.sendFile(__dirname + '/views/service.html');
+})
+
+app.get('/about/css', function(req, res) {
+    res.sendFile(__dirname + '/service.css');
+})
+
 //handling the creation of a new user
 app.post("/signup", function(req, res){
     //create new user object based on the user schema and the input boxes from the frontend.
@@ -127,8 +135,8 @@ app.get('/get-user', function(req, res) {
 })
 
 
-//app is listening on port 5000
-app.listen(5000, function(){
-    console.log('server is running on port 5000');
+//app is listening on port 3000
+app.listen(3000, function(){
+    console.log('server is running on port 3000');
 });
 
