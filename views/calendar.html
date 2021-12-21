@@ -17,11 +17,10 @@
     headerToolbar: {  
       left: 'prev,next today addEventButton',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      right: 'readTodaysEvents dayGridMonth,timeGridWeek,timeGridDay'
    },
     customButtons: {
       addEventButton: {
-        
         text: 'Add Event',
         click: function() {
           var title = prompt('Enter Event Name');
@@ -56,6 +55,28 @@
       readTodaysEvents: {
         text: "Read Todays Events",
         click: function() {
+          var msg = new SpeechSynthesisUtterance();
+          var date = calendar.getDate();
+          let events = calendar.getEvents();
+          let todaysEvents = [];
+          //Get todays events
+          for (let i = 0; i < events.length; i++){
+            if(date.getFullYear() === events[i].start.getFullYear() && date.getMonth() === events[i].start.getMonth() && date.getDate() === events[i].start.getDate()){
+              todaysEvents.push(events[i]);
+            } else if (date > events[i].start && date < events[i].end){
+              todaysEvents.push(events[i]);
+            }
+          }
+
+          if (todaysEvents.length == 0){
+            msg.text = "There are no events for today";
+          } else{
+            msg.text = "Todays events are: " 
+            for (let i = 0; i < todaysEvents.length; i++){
+              msg.text += todaysEvents[i].title + ", ";
+            }
+          }
+          window.speechSynthesis.speak(msg);
 
         }
       },
