@@ -41,3 +41,22 @@ h1::after
     box-shadow: 5px 7px 9px -3px rgb(255,255,255,0.5);
     cursor: pointer;
 }
+.nav-area{
+    float: right;
+    list-style: none;
+    margin-top: 30px;
+}
+.nav-area li{
+    display: inline-block;
+}
+.nav-area li a{
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family:poppins;
+    font-size: 16px;
+}
+.nav-area li a:hover{
+    background: #fff;
+    color: #333;
+}

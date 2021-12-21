@@ -2,8 +2,9 @@
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
-    <link href='/node_modules/fullcalendar/main.css' rel='stylesheet' />
-    <script src='/node_modules/fullcalendar/main.js'></script>
+    <link href='/calendar/css' rel='stylesheet' />
+    <link rel="shortcut icon" type="image/jpg" href="/favicon"/>
+    <script src='/calendar/js'></script>
     
     
     <script>
@@ -101,6 +102,15 @@
   <div id="container">
     <div id='container'>
       <body>
+        <div class = "wrapper">
+          <ul class="nav-area">
+              <h1 id="header"></h1>
+              <li><a href="/home">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/calendar">Calendar</a></li>
+              <li><a href="/profile">Profile</a></li>
+          </ul>
+      </div>
         <div id='calendar'></div>
       </body>
     </div>

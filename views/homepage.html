@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html lang = "en" onload={handleLogIn()}>
+<html lang = "en">
     <head>
         <meta charset="UTF-8">
-        <title>The Ultimate Student Planner</title>
+        <title>The Ultimate Student Planner | Home</title>
         <link rel="stylesheet" href = "/home/css">
         <link rel="shortcut icon" type="image/jpg" href="/favicon"/>
-        <script src="server.js"></script>
     </head>
     <body>
         <header>
 
             <div class = "wrapper">
                 <h1 id="Greeting"></h1>
-                <div class = "logo">
-                    <img src = "images/logo.png" alt ="">
-                </div>
                 <ul class="nav-area">
                     <h1 id="header"></h1>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/home">Home</a></li>
                     <li><a href="/about">About</a></li>
-                    <li><a href="#">Calendar</a></li>
-                    <li><a href="#">Schedule</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="/calendar">Calendar</a></li>
+                    <li><a href="/profile">Profile</a></li>
                 </ul>
             </div>
 
             <div class="welcome-text">
                 <h1>The Ultimate College Student Planner</h1>
-                <a href="#">Get Started</a>
+                <a href="/calendar">Get Started</a>
             </div>
         </header>
     </body>

@@ -87,6 +87,39 @@ app.get('/about/css', function(req, res) {
     res.sendFile(__dirname + '/service.css');
 })
 
+app.get('/calendar', function(req, res) {
+    res.sendFile(__dirname + '/views/calendar.html');
+})
+
+app.get('/calendar/css', function(req, res) {
+    res.sendFile(__dirname + '/node_modules/fullcalendar/main.css');
+})
+
+app.get('/calendar/js', function(req, res) {
+    res.sendFile(__dirname + '/node_modules/fullcalendar/main.js');
+})
+
+app.get('/profile', function(req, res) {
+    res.sendFile(__dirname + '/views/profile.html');
+})
+
+app.get('/profile/css', function(req, res) {
+    res.sendFile(__dirname + '/profile.css');
+})
+
+app.get('/get-user-info', function(req, res) {
+    res.json(user);
+})
+
+app.get('/loadJS', function(req, res) {
+    res.sendFile(__dirname + '/profile.js')
+})
+
+app.get('/logout', function(req, res) {
+    user = null;
+    res.redirect('/login');
+})
+
 //handling the creation of a new user
 app.post("/signup", function(req, res){
     //create new user object based on the user schema and the input boxes from the frontend.
