@@ -24,9 +24,9 @@
         text: 'Add Event',
         click: function() {
           var title = prompt('Enter Event Name');
-          var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+          var dateStr = prompt('Enter a start date in YYYY-MM-DD format');
           var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-          var dateEnd = prompt('Enter a date in YYYY-MM-DD format');
+          var dateEnd = prompt('Enter an end date in YYYY-MM-DD format');
           var date_end = new Date(dateEnd + 'T09:00:00'); // will be in local time
 
           if (!isNaN(date.valueOf()) || !isNaN(date_end.valueOf())) {
