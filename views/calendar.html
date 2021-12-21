@@ -26,27 +26,19 @@
         click: function() {
           var title = prompt('Enter Event Name');
           var dateStr = prompt('Enter a start date in YYYY-MM-DD format');
-          var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+          var s_time = prompt('Enter a start time in HH:MM (24-hour time) format');
+          var date = new Date(dateStr + 'T' + s_time); // will be in local time
           var dateEnd = prompt('Enter an end date in YYYY-MM-DD format');
-          var date_end = new Date(dateEnd + 'T09:00:00'); // will be in local time
+          var e_time = prompt('Enter an end time in HH:MM (24-hour time) format');
+          var date_end = new Date(dateEnd + 'T'+ e_time); // will be in local time
 
           if (!isNaN(date.valueOf()) || !isNaN(date_end.valueOf())) {
-            //If event starts and ends on same day
-            if(date_end.getDate() === date.getDate()){
-              calendar.addEvent({
-              title: title,
-              start: date,
-              end: date_end,
-              allDay: true
-              });
-              //If event starts and ends on different days
-              } else{
                 calendar.addEvent({
                 title: title,
                 start: date,
                 end: date_end
             });
-            }
+            
             alert('Event Created!');
           } else {
             alert('Invalid date. Try again!');
